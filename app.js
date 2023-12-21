@@ -1,4 +1,4 @@
-const ques = [
+const Questions = [
     {
         'ques': 'Who is the father of JavaScript?',
         'a': 'Brendan Eich',
@@ -22,87 +22,71 @@ const ques = [
         'c': 'Cascading Style Sheet',
         'd': 'Cascading Super Sheet',
         'correct': 'c'
-    },
-    {
-        'ques': 'What is the full form of PHP?',
-        'a': 'Hypertext Preprocessor',
-        'b': 'Hypertext Programming',
-        'c': 'Hypertext Preprogramming',
-        'd': 'Hometext Preprocessor',
-        'correct': 'a'
-    },
-    {
-        'ques': 'What is the full form of SQL?',
-        'a': 'Stylish Question Language',
-        'b': 'Stylesheet Query Language',
-        'c': 'Statement Question Language',
-        'd': 'Structured Query Language',
-        'correct': 'd'
-    },
-    {
-        'ques': 'What is the full form of XML?',
-        'a': 'eXtensible Markup Language',
-        'b': 'eXecutable Multiple Language',
-        'c': 'eXamine Multiple Language',
-        'd': 'eXecutable Multiple Language',
-        'correct': 'a'
     }
 ]
+
 let index = 0;
-let total = ques.length;
+let total = Questions.length
 let correct = 0;
 let incorrect = 0;
-let quesBox = document.getElementById('quesBox');
-let getOptions = document.querySelectorAll('.options');
-const loadQues = () => {
-    if (index === total) {
-        return endQuiz()
+let mainHead = document.getElementById('main-ques')
+let options = document.querySelectorAll('.options')
+const loadQuiz = () => {
+    if(index == total){
+        return result();
     }
-    reset();
-    const data = ques[index]
-    quesBox.innerText = `${index + 1}: ${data.ques}`
-    document.getElementById('')
-    getOptions[0].nextElementSibling.innerText = data.a
-    getOptions[1].nextElementSibling.innerText = data.b
-    getOptions[2].nextElementSibling.innerText = data.c
-    getOptions[3].nextElementSibling.innerText = data.d
+    reset()
+    let data = Questions[index]
+    mainHead.innerText = `${index + 1}: ${data.ques}`
+    options[0].nextElementSibling.innerText = data.a
+    options[1].nextElementSibling.innerText = data.b
+    options[2].nextElementSibling.innerText = data.c
+    options[3].nextElementSibling.innerText = data.d
 }
 const submitQuiz = () => {
-    const data = ques[index]
+    const data = Questions[index]
     const ans = getAns()
-    if (ans === data.correct) {
-        correct++
-    } else {
-        incorrect++
+    if(ans === data.correct){
+    correct++
+    }else{
+    incorrect++
     }
     index++
-    loadQues()
-    return;
+    loadQuiz()
+    return
 }
-
 const getAns = () => {
-    let answer;
-    getOptions.forEach(
+    let answer
+    options.forEach(
         (input) => {
             if (input.checked) {
                 answer = input.value
             }
+
         }
     )
-    return answer
+    return answer;
 }
-
 const reset = () => {
-    getOptions.forEach(
+    options.forEach(
         (input) => {
             input.checked = false
         }
     )
 }
-const endQuiz = () => {
+const result = () => {
     document.querySelector('.box').innerHTML = `
-    <h3>Thank You for playing quiz</h3>
-    <h4>You scored ${correct} / ${total} </h4>
+    <h3>Thank you for taking QUIZ</h3>
+    <h4>Your result is ${correct} / ${total} </h4>
+    <button onclick="location.reload()" id = "btn">Reload</button>
     `
 }
-loadQues()
+const previousQuiz = () => {
+    if(index == 0) return
+    index--
+    loadQuiz()
+    return;
+}
+
+
+loadQuiz()

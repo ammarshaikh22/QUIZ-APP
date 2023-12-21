@@ -50,15 +50,17 @@
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
 
-        #btn {
+        #btn,
+        #btn2 {
             margin-top: 10px;
-            width: 100%;
+            width: 200px;
             height: 40px;
             border-radius: 5px;
             border: none;
             color: white;
             font-size: 18px;
             background-color: rgb(41, 141, 255);
+            cursor: pointer;
         }
         @media screen and (max-width: 620px) {
             .box {
@@ -70,8 +72,11 @@
                 font-size: 14px;
             }
 
-            #btn {
+            #btn,
+            #btn2 {
                 font-size: 14px;
+                width: 5rem;
+                height: 2rem;
             }
 
             h2 {
@@ -101,7 +106,7 @@
     </style>
     <div class="main">
         <div class="box">
-            <h2 id="quesBox">1): This is Demo Question</h2>
+            <h2 id="main-ques">1): This is Demo Question</h2>
             <div class="row">
                 <input class="options" id="option1" type="radio" name="option" value="a">
                 <label for="option1">Option 1</label>
@@ -121,6 +126,7 @@
             <button id="btn" onclick="submitQuiz()">
                 Submit
             </button>
+            <button id="btn2" onclick="previousQuiz()">Previous</button>
         </div>
     </div>
     <script src="app.js"></script>
