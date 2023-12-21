@@ -22,7 +22,7 @@ const Questions = [
         'c': 'Cascading Style Sheet',
         'd': 'Cascading Super Sheet',
         'correct': 'c'
-    }
+    },
 ]
 
 let index = 0;
@@ -84,6 +84,8 @@ const result = () => {
 const previousQuiz = () => {
     if(index == 0) return
     index--
+    correct--
+    incorrect--
     loadQuiz()
     return;
 }
